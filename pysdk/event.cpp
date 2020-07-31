@@ -1,4 +1,4 @@
-﻿// event.cpp : 定义 DLL 应用程序的导出函数。
+// event.cpp : 定义 DLL 应用程序的导出函数。
 //
 
 #include "stdafx.h"
@@ -26,8 +26,21 @@ PyObject *qy_log(PyObject *self, PyObject *args);
 PyObject *qy_warning(PyObject *self, PyObject *args);
 PyObject *qy_error(PyObject *self, PyObject *args);
 //包装发送消息的函数
-PyObject *qy_sendFriendMsg(PyObject *self, PyObject *args);
-
+PyObject* qy_sendFriendMsg(PyObject* self, PyObject* args);
+PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args);
+//包装名片赞
+PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args);
+//包装群聊操作
+PyObject* qy_setGroupMembersKick(PyObject* self, PyObject* args);
+PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args);
+PyObject* qy_setGroupMemberBanSpeak(PyObject* self, PyObject* args);
+PyObject* qy_setGroupAnonymousBan(PyObject* self, PyObject* args);
+PyObject* qy_setGroupPrivateSession(PyObject* self, PyObject* args);
+PyObject* qy_setGroupManyPeopleChat(PyObject* self, PyObject* args);
+PyObject* qy_setGroupAdmini(PyObject* self, PyObject* args);
+PyObject* qy_setGroupMemberCard(PyObject* self, PyObject* args);
+PyObject* qy_setGroupSpecialTitle(PyObject* self, PyObject* args);
+PyObject* qy_setGroupExit(PyObject* self, PyObject* args);
 //包装编码转换
 PyObject *qy_utf8Decode(PyObject *self, PyObject *args);
 
@@ -73,6 +86,18 @@ QYEVENT(INT32) QY_Event_Startup()
 	PyMethodDef method_cpp_warning = { "cpp_warning",qy_warning,METH_VARARGS,"Add a warning log" };
 	PyMethodDef method_cpp_error = { "cpp_error",qy_error,METH_VARARGS,"Add a error log" };
 	PyMethodDef method_cpp_sendFriendMsg = { "cpp_sendFriendMsg",qy_sendFriendMsg,METH_VARARGS,"Send a friend message" };
+	PyMethodDef method_cpp_sendGroupMsg = { "cpp_sendGroupMsg",qy_sendGroupMsg,METH_VARARGS,"Send a group message" };
+	PyMethodDef method_cpp_sendLikeFavorite = { "cpp_sendLikeFavorite",qy_sendLikeFavorite,METH_VARARGS,"Send somebody Likes" };
+	PyMethodDef method_cpp_setGroupMembersKick = { "cpp_setGroupMembersKick",qy_setGroupMembersKick,METH_VARARGS,"Set group members kick" };
+	PyMethodDef method_cpp_setGroupWholeBanSpeak = { "cpp_setGroupWholeBanSpeak",qy_setGroupWholeBanSpeak,METH_VARARGS,"Set group whole ban speak" };
+	PyMethodDef method_cpp_setGroupMemberBanSpeak = { "cpp_setGroupMemberBanSpeak",qy_setGroupMemberBanSpeak,METH_VARARGS,"Set group member ban speak" };
+	PyMethodDef method_cpp_setGroupAnonymousBan = { "cpp_setGroupAnonymousBan",qy_setGroupAnonymousBan,METH_VARARGS,"Set group anonymous ban" };
+	PyMethodDef method_cpp_setGroupPrivateSession = { "cpp_setGroupPrivateSession",qy_setGroupPrivateSession,METH_VARARGS,"Set group private session" };
+	PyMethodDef method_cpp_setGroupManyPeopleChat = { "cpp_setGroupManyPeopleChat",qy_setGroupManyPeopleChat,METH_VARARGS,"Set group many people chat" };
+	PyMethodDef method_cpp_setGroupAdmini = { "cpp_setGroupAdmini",qy_setGroupAdmini,METH_VARARGS,"Set group admini" };
+	PyMethodDef method_cpp_setGroupMemberCard = { "cpp_setGroupMemberCard",qy_setGroupMemberCard,METH_VARARGS,"Set a group member's card" };
+	PyMethodDef method_cpp_setGroupSpecialTitle = { "cpp_setGroupSpecialTitle",qy_setGroupSpecialTitle,METH_VARARGS,"Set Group Exit" };
+	PyMethodDef method_cpp_setGroupExit = { "cpp_setGroupExit",qy_setGroupExit,METH_VARARGS,"Send somebody Likes" };
 	PyMethodDef method_cpp_utf8Decode = { "cpp_utf8Decode",qy_utf8Decode,METH_VARARGS,"Utf8Decode to ansi" };
 
 	//模块方法列表
@@ -82,6 +107,18 @@ QYEVENT(INT32) QY_Event_Startup()
 		method_cpp_warning,
 		method_cpp_error,
 		method_cpp_sendFriendMsg,
+		method_cpp_sendGroupMsg,
+		method_cpp_sendLikeFavorite,
+		method_cpp_setGroupMembersKick,
+		method_cpp_setGroupWholeBanSpeak,
+		method_cpp_setGroupMemberBanSpeak,
+		method_cpp_setGroupAnonymousBan,
+		method_cpp_setGroupPrivateSession,
+		method_cpp_setGroupManyPeopleChat,
+		method_cpp_setGroupAdmini,
+		method_cpp_setGroupMemberCard,
+		method_cpp_setGroupSpecialTitle,
+		method_cpp_setGroupExit,
 		method_cpp_utf8Decode
 	};
 	//模块定义
@@ -449,9 +486,9 @@ PyObject *qy_error(PyObject *self, PyObject *args) {
 }
 
 PyObject *qy_sendFriendMsg(PyObject *self, PyObject *args) {
-	unsigned long long RobotID, DestQQ;
+	long long RobotID, DestQQ;
 	const char* content;
-	if (!PyArg_ParseTuple(args, "KKs", &RobotID, &DestQQ,&content)) {
+	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestQQ,&content)) {
 		QYLOG::Error(0, "Python", "QY.sendFriendMsg调用错误！");
 	}
 	else {
@@ -460,6 +497,138 @@ PyObject *qy_sendFriendMsg(PyObject *self, PyObject *args) {
 	return Py_None;
 }
 
+PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	const char* content;
+	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestGroup, &content)) {
+		QYLOG::Error(0, "Python", "QY.sendGroupMsg调用错误！");
+	}
+	else {
+		QY::sendGroupMsg(RobotID, DestGroup, QY::convertUtf8ToAnsi(content));
+	}
+	return Py_None;
+}
+PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args) {
+	long long RobotID, DestQQ;
+	int count;
+	if (!PyArg_ParseTuple(args, "LLi", &RobotID, &DestQQ, &count)) {
+		QYLOG::Error(0, "Python", "QY.sendLikeFavorite调用错误！");
+	}
+	else {
+		QY::sendLikeFavorite(RobotID, DestQQ, count);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupMembersKick(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	bool rejectAddRequest;
+	if (!PyArg_ParseTuple(args, "LLLp", &RobotID, &DestGroup, &DestQQ, &rejectAddRequest)) {
+		QYLOG::Error(0, "Python", "QY.setGroupMemberKick调用错误！");
+	}
+	else {
+		QY::setGroupMembersKick(RobotID, DestGroup, DestQQ, rejectAddRequest);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	bool newStatus;
+	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
+		QYLOG::Error(0, "Python", "QY.setGroupWholeBanSpeak调用错误！");
+	}
+	else {
+		QY::setGroupWholeBanSpeak(RobotID, DestGroup, newStatus);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupMemberBanSpeak(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ, timeStamp;
+	if (!PyArg_ParseTuple(args, "LLLL", &RobotID, &DestGroup, &DestQQ, &timeStamp)) {
+		QYLOG::Error(0, "Python", "QY.setGroupMemberBanSpeak调用错误！");
+	}
+	else {
+		QY::setGroupMemberBanSpeak(RobotID, DestGroup, DestQQ, timeStamp);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupAnonymousBan(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	bool newStatus;
+	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
+		QYLOG::Error(0, "Python", "QY.setGroupAnonymousBan调用错误！");
+	}
+	else {
+		QY::setGroupAnonymousBan(RobotID, DestGroup, newStatus);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupPrivateSession(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	bool newStatus;
+	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
+		QYLOG::Error(0, "Python", "QY.setGroupPrivateSession调用错误！");
+	}
+	else {
+		QY::setGroupPrivateSession(RobotID, DestGroup, newStatus);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupManyPeopleChat(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	bool newStatus;
+	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
+		QYLOG::Error(0, "Python", "QY.setGroupManyPeopleChat调用错误！");
+	}
+	else {
+		QY::setGroupManyPeopleChat(RobotID, DestGroup, newStatus);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupAdmini(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	bool newStatus;
+	if (!PyArg_ParseTuple(args, "LLLp", &RobotID, &DestGroup, &DestQQ, &newStatus)) {
+		QYLOG::Error(0, "Python", "QY.setGroupAdmini调用错误！");
+	}
+	else {
+		QY::setGroupAdmini(RobotID, DestGroup, DestQQ, newStatus);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupMemberCard(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	const char* newCard;
+	if (!PyArg_ParseTuple(args, "LLLs", &RobotID, &DestGroup, &DestQQ, &newCard)) {
+		QYLOG::Error(0, "Python", "QY.setGroupMemberCard调用错误！");
+	}
+	else {
+		QY::setGroupMemberCard(RobotID, DestGroup, DestQQ, QY::convertUtf8ToAnsi(newCard));
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupSpecialTitle(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	int expireTime;
+	const char* specialTitle;
+	if (!PyArg_ParseTuple(args, "LLLsi", &RobotID, &DestGroup, &DestQQ, &specialTitle, &expireTime)) {
+		QYLOG::Error(0, "Python", "QY.setGroupSpecialTitle调用错误！");
+	}
+	else {
+		QY::setGroupSpecialTitle(RobotID, DestGroup, DestQQ, QY::convertUtf8ToAnsi(specialTitle), expireTime);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupExit(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	bool disband;
+	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &disband)) {
+		QYLOG::Error(0, "Python", "QY.setGroupExit调用错误！");
+	}
+	else {
+		QY::setGroupExit(RobotID, DestGroup, disband);
+	}
+	return Py_None;
+}
 PyObject *qy_utf8Decode(PyObject *self, PyObject *args) {
 	const char* content;
 	if (!PyArg_ParseTuple(args, "s",  &content)) {
