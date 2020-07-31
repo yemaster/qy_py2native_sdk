@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{c7a0e4e4-c695-4c12-811a-0fa764c1b573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\sdk">
+      <UniqueIdentifier>{d7f52c11-1297-48e6-888f-8ff1f3b228c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{fb6da347-3cca-4a1d-af8f-140bfdb08c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\py">
+      <UniqueIdentifier>{f429f24a-f978-4c21-b3fd-e94d2124496d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.json" />
+    <None Include="events.def">
+      <Filter>源文件\sdk</Filter>
+    </None>
+    <None Include="main.py">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="qysdk.py">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="resource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\nstring.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\pack.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\unPack.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\bins.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\base64.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\encodingConvert.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="qy\api.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="qy\code.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="qy\infoAnalyze.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="qy\log.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="qy\logInfo.cpp">
+      <Filter>源文件\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="get_source_code.hpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="typedef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\unPack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\pack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\nstring.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\encodingConvert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\bins.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\base64.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\api.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\code.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\dll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\infoAnalyze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\logInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="qy\typedef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\abstract.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\abstract.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\asdl.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ast.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bitset.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bltinmodule.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\boolobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bytearrayobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bytes_methods.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bytesobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cellobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ceval.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\classobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\code.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\codecs.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\compile.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\complexobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\context.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datetime.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\descrobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\dictobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dictobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dtoa.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dynamic_annotations.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\enumobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\errcode.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eval.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fileobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\fileobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fileutils.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\floatobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\frameobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funcobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\genobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graminit.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\grammar.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\import.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\initconfig.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\interpreteridobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\intrcheck.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interpreteridobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iterobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\listobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\marshal.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\longintrepr.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\longobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\memoryobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\methodobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\modsupport.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\moduleobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\object.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\namespaceobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\object.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\node.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\objimpl.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objimpl.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\odictobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\opcode.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\osdefs.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\osmodule.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\parsetok.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\patchlevel.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\picklebufobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\py_curses.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyarena.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pycapsule.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyconfig.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_accu.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_atomic.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_ceval.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_code.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_condvar.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_context.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_fileutils.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_getopt.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_gil.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_hamt.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_initconfig.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_object.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pathconfig.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pyerrors.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pyhash.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pylifecycle.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pymem.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_pystate.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_traceback.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_tupleobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal\pycore_warnings.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyctype.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pydebug.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pydtrace.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\pyerrors.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyerrors.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyexpat.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyfpe.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyhash.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pylifecycle.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\pylifecycle.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pymacconfig.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pymacro.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pymath.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pymem.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\pymem.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pyport.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\pystate.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pystate.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pystrcmp.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pystrhex.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pystrtod.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Python.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Python-ast.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pythonrun.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pythread.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pytime.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rangeobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\setobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sliceobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\structmember.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\structseq.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\symtable.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\sysmodule.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sysmodule.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\token.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\traceback.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\traceback.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tracemalloc.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\tupleobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tupleobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\typeslots.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ucnhash.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpython\unicodeobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unicodeobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\warnings.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weakrefobject.h">
+      <Filter>头文件\py</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libs\python3.lib">
+      <Filter>源文件\sdk</Filter>
+    </Library>
+    <Library Include="libs\python38.lib">
+      <Filter>源文件\sdk</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="me.sc.pysdk.rc">
+      <Filter>源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
