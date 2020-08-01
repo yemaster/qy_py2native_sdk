@@ -28,8 +28,14 @@ PyObject *qy_error(PyObject *self, PyObject *args);
 //包装发送消息的函数
 PyObject* qy_sendFriendMsg(PyObject* self, PyObject* args);
 PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args);
-//包装名片赞
+PyObject* qy_sendGroupTmpMsg(PyObject* self, PyObject* args);
+PyObject* qy_sendDiscussMsg(PyObject* self, PyObject* args);
+PyObject* qy_sendDiscussTmpMsg(PyObject* self, PyObject* args);
+PyObject* qy_setMessageSvcMsgWithDraw(PyObject* self, PyObject* args);
+//包装好友操作
 PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args);
+PyObject* qy_setFriendDelete(PyObject* self, PyObject* args);
+PyObject* qy_setFriendAddRequest(PyObject* self, PyObject* args);
 //包装群聊操作
 PyObject* qy_setGroupMembersKick(PyObject* self, PyObject* args);
 PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args);
@@ -41,6 +47,15 @@ PyObject* qy_setGroupAdmini(PyObject* self, PyObject* args);
 PyObject* qy_setGroupMemberCard(PyObject* self, PyObject* args);
 PyObject* qy_setGroupSpecialTitle(PyObject* self, PyObject* args);
 PyObject* qy_setGroupExit(PyObject* self, PyObject* args);
+PyObject* qy_setGroupAdd(PyObject* self, PyObject* args);
+PyObject* qy_setGroupAddRequest(PyObject* self, PyObject* args);
+//包装文件操作
+PyObject* qy_sendOfflineFile(PyObject* self, PyObject* args);
+PyObject* qy_setGroupFileUpload(PyObject* self, PyObject* args);
+PyObject* qy_setGroupFileDelete(PyObject* self, PyObject* args);
+//包装讨论组操作
+PyObject* qy_setDiscussExit(PyObject* self, PyObject* args);
+PyObject* qy_setDiscussMembersKick(PyObject* self, PyObject* args);
 //包装编码转换
 PyObject *qy_utf8Decode(PyObject *self, PyObject *args);
 
@@ -87,7 +102,13 @@ QYEVENT(INT32) QY_Event_Startup()
 	PyMethodDef method_cpp_error = { "cpp_error",qy_error,METH_VARARGS,"Add a error log" };
 	PyMethodDef method_cpp_sendFriendMsg = { "cpp_sendFriendMsg",qy_sendFriendMsg,METH_VARARGS,"Send a friend message" };
 	PyMethodDef method_cpp_sendGroupMsg = { "cpp_sendGroupMsg",qy_sendGroupMsg,METH_VARARGS,"Send a group message" };
+	PyMethodDef method_cpp_sendGroupTmpMsg = { "cpp_sendGroupTmpMsg",qy_sendGroupTmpMsg,METH_VARARGS,"Send a group tmp message" };
+	PyMethodDef method_cpp_sendDiscussMsg = { "cpp_sendDiscussMsg",qy_sendDiscussMsg,METH_VARARGS,"Send a discuss message" };
+	PyMethodDef method_cpp_sendDiscussTmpMsg = { "cpp_sendDiscussTmpMsg",qy_sendDiscussTmpMsg,METH_VARARGS,"Send a discuss tmp message" };
+	PyMethodDef method_cpp_setMessageSvcMsgWithDraw = { "cpp_setMessageSvcMsgWithDraw",qy_setMessageSvcMsgWithDraw,METH_VARARGS,"Delete a message" };
 	PyMethodDef method_cpp_sendLikeFavorite = { "cpp_sendLikeFavorite",qy_sendLikeFavorite,METH_VARARGS,"Send somebody Likes" };
+	PyMethodDef method_cpp_setFriendDelete = { "cpp_setFriendDelete",qy_setFriendDelete,METH_VARARGS,"Delete a Friend" };
+	PyMethodDef method_cpp_setFriendAddRequest = { "cpp_setFriendAddRequest",qy_setFriendAddRequest,METH_VARARGS,"Add a friend" };
 	PyMethodDef method_cpp_setGroupMembersKick = { "cpp_setGroupMembersKick",qy_setGroupMembersKick,METH_VARARGS,"Set group members kick" };
 	PyMethodDef method_cpp_setGroupWholeBanSpeak = { "cpp_setGroupWholeBanSpeak",qy_setGroupWholeBanSpeak,METH_VARARGS,"Set group whole ban speak" };
 	PyMethodDef method_cpp_setGroupMemberBanSpeak = { "cpp_setGroupMemberBanSpeak",qy_setGroupMemberBanSpeak,METH_VARARGS,"Set group member ban speak" };
@@ -96,8 +117,15 @@ QYEVENT(INT32) QY_Event_Startup()
 	PyMethodDef method_cpp_setGroupManyPeopleChat = { "cpp_setGroupManyPeopleChat",qy_setGroupManyPeopleChat,METH_VARARGS,"Set group many people chat" };
 	PyMethodDef method_cpp_setGroupAdmini = { "cpp_setGroupAdmini",qy_setGroupAdmini,METH_VARARGS,"Set group admini" };
 	PyMethodDef method_cpp_setGroupMemberCard = { "cpp_setGroupMemberCard",qy_setGroupMemberCard,METH_VARARGS,"Set a group member's card" };
-	PyMethodDef method_cpp_setGroupSpecialTitle = { "cpp_setGroupSpecialTitle",qy_setGroupSpecialTitle,METH_VARARGS,"Set Group Exit" };
-	PyMethodDef method_cpp_setGroupExit = { "cpp_setGroupExit",qy_setGroupExit,METH_VARARGS,"Send somebody Likes" };
+	PyMethodDef method_cpp_setGroupSpecialTitle = { "cpp_setGroupSpecialTitle",qy_setGroupSpecialTitle,METH_VARARGS,"Set group special title" };
+	PyMethodDef method_cpp_setGroupExit = { "cpp_setGroupExit",qy_setGroupExit,METH_VARARGS,"Set Group Exit" };
+	PyMethodDef method_cpp_setGroupAdd = { "cpp_setGroupAdd",qy_setGroupAdd,METH_VARARGS,"Set Group ADd" };
+	PyMethodDef method_cpp_setGroupAddRequest = { "cpp_setGroupAddRequest",qy_setGroupAddRequest,METH_VARARGS,"Set group add request" };
+	PyMethodDef method_cpp_sendOfflineFile = { "cpp_sendOfflineFile",qy_sendOfflineFile,METH_VARARGS,"Send offline file" };
+	PyMethodDef method_cpp_setGroupFileUpload = { "cpp_setGroupFileUpload",qy_setGroupFileUpload,METH_VARARGS,"Set Group file upload" };
+	PyMethodDef method_cpp_setGroupFileDelete = { "cpp_setGroupFileDelete",qy_setGroupFileDelete,METH_VARARGS,"Set Group file delete" };
+	PyMethodDef method_cpp_setDiscussExit = { "cpp_setDiscussExit",qy_setDiscussExit,METH_VARARGS,"Set discuss exit" };
+	PyMethodDef method_cpp_setDiscussMembersKick = { "cpp_setDiscussMembersKick",qy_setDiscussMembersKick,METH_VARARGS,"Set discuss member kick" };
 	PyMethodDef method_cpp_utf8Decode = { "cpp_utf8Decode",qy_utf8Decode,METH_VARARGS,"Utf8Decode to ansi" };
 
 	//模块方法列表
@@ -108,7 +136,13 @@ QYEVENT(INT32) QY_Event_Startup()
 		method_cpp_error,
 		method_cpp_sendFriendMsg,
 		method_cpp_sendGroupMsg,
+		method_cpp_sendGroupTmpMsg,
+		method_cpp_sendDiscussMsg,
+		method_cpp_sendDiscussTmpMsg,
+		method_cpp_setMessageSvcMsgWithDraw,
 		method_cpp_sendLikeFavorite,
+		method_cpp_setFriendDelete,
+		method_cpp_setFriendAddRequest,
 		method_cpp_setGroupMembersKick,
 		method_cpp_setGroupWholeBanSpeak,
 		method_cpp_setGroupMemberBanSpeak,
@@ -119,6 +153,13 @@ QYEVENT(INT32) QY_Event_Startup()
 		method_cpp_setGroupMemberCard,
 		method_cpp_setGroupSpecialTitle,
 		method_cpp_setGroupExit,
+		method_cpp_setGroupAdd,
+		method_cpp_setGroupAddRequest,
+		method_cpp_sendOfflineFile,
+		method_cpp_setGroupFileUpload,
+		method_cpp_setGroupFileDelete,
+		method_cpp_setDiscussExit,
+		method_cpp_setDiscussMembersKick,
 		method_cpp_utf8Decode
 	};
 	//模块定义
@@ -250,7 +291,7 @@ QYEVENT(INT32) QY_Event_GroupMsg(
 	INT32		intTest			// 用于测试
 )
 {
-	PyObject *onPrivateMsg = PyObject_GetAttrString(py_obj_handler, "onPrivateMsg");
+	PyObject *onPrivateMsg = PyObject_GetAttrString(py_obj_handler, "onGroupMsg");
 
 	PyObject *args = Py_BuildValue("(LiLLLsssi)",
 		robotID,
@@ -283,6 +324,20 @@ QYEVENT(INT32) QY_Event_DiscussMsg(
 	INT32		intTest			// 用于测试
 )
 {
+	PyObject *onPrivateMsg = PyObject_GetAttrString(py_obj_handler, "onDiscussMsg");
+
+	PyObject *args = Py_BuildValue("(LiLLLsssi)",
+		robotID,
+		subType,
+		sendTime,
+		fromDiscuss,	// 来源讨论组
+		fromQQ,
+		QY::convertAnsiToUtf8(fromInfo).cStr(),
+		QY::convertAnsiToUtf8(msg).cStr(),
+		QY::convertAnsiToUtf8(info).cStr(),
+		intTest);
+
+	PyObject_Call(onPrivateMsg, args, nullptr);
 	return QY::EVENT_IGNORE; //关于返回值说明, 见「QY_Event_PrivateMsg」函数
 }
 
@@ -508,6 +563,50 @@ PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args) {
 	}
 	return Py_None;
 }
+PyObject* qy_sendGroupTmpMsg(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	const char* content;
+	if (!PyArg_ParseTuple(args, "LLLs", &RobotID, &DestGroup, &DestQQ, &content)) {
+		QYLOG::Error(0, "Python", "QY.sendGroupTmpMsg调用错误！");
+	}
+	else {
+		QY::sendGroupTmpMsg(RobotID, DestGroup, DestQQ, QY::convertUtf8ToAnsi(content));
+	}
+	return Py_None;
+}
+PyObject* qy_sendDiscussMsg(PyObject* self, PyObject* args) {
+	long long RobotID, DestDiscuss;
+	const char* content;
+	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestDiscuss, &content)) {
+		QYLOG::Error(0, "Python", "QY.sendDiscussMsg调用错误！");
+	}
+	else {
+		QY::sendDiscussMsg(RobotID, DestDiscuss, QY::convertUtf8ToAnsi(content));
+	}
+	return Py_None;
+}
+PyObject* qy_sendDiscussTmpMsg(PyObject* self, PyObject* args) {
+	long long RobotID, DestDiscuss, DestQQ;
+	const char* content;
+	if (!PyArg_ParseTuple(args, "LLLs", &RobotID, &DestDiscuss, &DestQQ, &content)) {
+		QYLOG::Error(0, "Python", "QY.sendDiscussTmpMsg调用错误！");
+	}
+	else {
+		QY::sendDiscussTmpMsg(RobotID, DestDiscuss, DestQQ, QY::convertUtf8ToAnsi(content));
+	}
+	return Py_None;
+}
+PyObject* qy_setMessageSvcMsgWithDraw(PyObject* self, PyObject* args) {
+	long long RobotID;
+	const char* MsgInfo;
+	if (!PyArg_ParseTuple(args, "Ls", &RobotID, &MsgInfo)) {
+		QYLOG::Error(0, "Python", "QY.setMessageSvcMsgWithDraw调用错误！");
+	}
+	else {
+		QY::setMessageSvcMsgWithDraw(RobotID, QY::convertUtf8ToAnsi(MsgInfo));
+	}
+	return Py_None;
+}
 PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args) {
 	long long RobotID, DestQQ;
 	int count;
@@ -516,6 +615,29 @@ PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args) {
 	}
 	else {
 		QY::sendLikeFavorite(RobotID, DestQQ, count);
+	}
+	return Py_None;
+}
+PyObject* qy_setFriendDelete(PyObject* self, PyObject* args) {
+	long long RobotID, DestQQ;
+	if (!PyArg_ParseTuple(args, "LL", &RobotID, &DestQQ)) {
+		QYLOG::Error(0, "Python", "QY.setFriendDelete调用错误！");
+	}
+	else {
+		QY::setFriendDelete(RobotID, DestQQ);
+	}
+	return Py_None;
+}
+PyObject* qy_setFriendAddRequest(PyObject* self, PyObject* args) {
+	long long RobotID;
+	int resultFlag;
+	const char* responseFlag;
+	const char* Remark;
+	if (!PyArg_ParseTuple(args, "Lsis", &RobotID, &responseFlag, &resultFlag, &Remark)) {
+		QYLOG::Error(0, "Python", "QY.setFriendAddRequest调用错误！");
+	}
+	else {
+		QY::setFriendAddRequest(RobotID, responseFlag, resultFlag, Remark);
 	}
 	return Py_None;
 }
@@ -626,6 +748,86 @@ PyObject* qy_setGroupExit(PyObject* self, PyObject* args) {
 	}
 	else {
 		QY::setGroupExit(RobotID, DestGroup, disband);
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupAdd(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	const char* AdditionalMsg;
+	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestGroup, &AdditionalMsg)) {
+		QYLOG::Error(0, "Python", "QY.setGroupAdd调用错误！");
+	}
+	else {
+		QY::setGroupAdd(RobotID, DestGroup, QY::convertUtf8ToAnsi(AdditionalMsg));
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupAddRequest(PyObject* self, PyObject* args) {
+	long long RobotID;
+	const char* responseFlag;
+	int requestType, resultFlag;
+	const char* reason;
+	if (!PyArg_ParseTuple(args, "Lsiis", &RobotID, &responseFlag, &requestType, &resultFlag, &reason)) {
+		QYLOG::Error(0, "Python", "QY.setGroupAddRequest调用错误！");
+	}
+	else {
+		QY::setGroupAddRequest(RobotID, QY::convertUtf8ToAnsi(responseFlag), requestType, resultFlag, QY::convertUtf8ToAnsi(reason));
+	}
+	return Py_None;
+}
+PyObject* qy_sendOfflineFile(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, DestQQ;
+	int dwMsgType;
+	const char* strLocalPath;
+	if (!PyArg_ParseTuple(args, "LiLLs", &RobotID, &dwMsgType, &DestGroup, &DestQQ,&strLocalPath)) {
+		QYLOG::Error(0, "Python", "QY.sendOfflineFile调用错误！");
+	}
+	else {
+		QY::sendOfflineFile(RobotID, dwMsgType, DestGroup, DestQQ, QY::convertUtf8ToAnsi(strLocalPath));
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupFileUpload(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup;
+	const char* strParentFolder;
+	const char* strLocalPath;
+	if (!PyArg_ParseTuple(args, "LLss", &RobotID, &DestGroup, &strParentFolder, &strLocalPath)) {
+		QYLOG::Error(0, "Python", "QY.setGroupFileUpload调用错误！");
+	}
+	else {
+		QY::setGroupFileUpload(RobotID, DestGroup, QY::convertUtf8ToAnsi(strParentFolder), QY::convertUtf8ToAnsi(strLocalPath));
+	}
+	return Py_None;
+}
+PyObject* qy_setGroupFileDelete(PyObject* self, PyObject* args) {
+	long long RobotID, DestGroup, fileBusID;
+	const char* strParentFolder;
+	const char* fileID;
+	if (!PyArg_ParseTuple(args, "LLLss", &RobotID, &DestGroup, &fileBusID, &strParentFolder, &fileID)) {
+		QYLOG::Error(0, "Python", "QY.setGroupFileDelete调用错误！");
+	}
+	else {
+		QY::setGroupFileDelete(RobotID, DestGroup, fileBusID, strParentFolder, fileID);
+	}
+	return Py_None;
+}
+PyObject* qy_setDiscussExit(PyObject* self, PyObject* args) {
+	long long RobotID, DestDiscuss;
+	if (!PyArg_ParseTuple(args, "LL", &RobotID, &DestDiscuss)) {
+		QYLOG::Error(0, "Python", "QY.setDiscussExit调用错误！");
+	}
+	else {
+		QY::setDiscussExit(RobotID, DestDiscuss);
+	}
+	return Py_None;
+}
+PyObject* qy_setDiscussMembersKick(PyObject* self, PyObject* args) {
+	long long RobotID, DestDiscuss, DestQQ;
+	if (!PyArg_ParseTuple(args, "LLL", &RobotID, &DestDiscuss, &DestQQ)) {
+		QYLOG::Error(0, "Python", "QY.setDiscussMemberKick调用错误！");
+	}
+	else {
+		QY::setDiscussMembersKick(RobotID, DestDiscuss, DestQQ);
 	}
 	return Py_None;
 }

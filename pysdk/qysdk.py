@@ -60,7 +60,7 @@ class MessageHandler():
 			fromInfo  String    来源者信息
 			msg       String	消息内容
 			info      String    事件总信息
-			intTest   String	用于测试(我也不知道机器人作者想干嘛
+			intTest   int	用于测试(我也不知道机器人作者想干嘛
 	"""
 	def onPrivateMsg(self,
 				robotID,
@@ -86,13 +86,38 @@ class MessageHandler():
 			fromInfo  String    来源者信息
 			msg       String	消息内容
 			info      String    事件总信息
-			intTest   String	用于测试(我也不知道机器人作者想干嘛
+			intTest   int	    用于测试(我也不知道机器人作者想干嘛
 	"""
 	def onGroupMsg(self,
 				robotID,
 				subType,
 				sendTime,
 				fromGroup,
+				fromQQ,
+				fromInfo,
+				msg,
+				info,
+				intTest):
+		pass
+	"""
+		事件说明：讨论组消息
+		事件名称：onDiscussMsg
+		事件参数：
+			robotID     int       机器人QQ号
+			subType     int       子类型，目前固定为1
+			sendTime    int       发送时间(13位时间戳)
+			fromDiscuss	int       来源讨论组
+			fromQQ      int       发送者QQ号
+			fromInfo    String    来源者信息
+			msg         String	  消息内容
+			info        String    事件总信息
+			intTest     int	      用于测试(我也不知道机器人作者想干嘛
+	"""
+	def onDiscussMsg(self,
+				robotID,
+				subType,
+				sendTime,
+				fromDiscuss,
 				fromQQ,
 				fromInfo,
 				msg,
@@ -180,6 +205,77 @@ class cpp_api():
 	def sendGroupMsg(self,robotID,destGroup,content):
 		try:
 			cpp_sendGroupMsg(robotID,destGroup,content)
+		except:
+			pass
+		pass
+	pass
+	"""
+	函数名称:QY.sendGroupTmpMsg
+	函数参数:
+		RobotID   int
+	    DestGroup int 
+		DestQQ    int
+	    content   String(UTF8)
+	"""
+	def sendGroupTmpMsg(self, RobotID, DestGroup, DestQQ, content):
+		try:
+			cpp_sendGroupTmpMsg(RobotID, DestGroup, DestQQ, content)
+		except:
+			pass
+		pass
+	pass
+	"""
+	函数名称:QY.sendDiscussMsg
+	函数参数:
+		robotID       int
+		destDiscuss   int
+		content       String(UTF8)
+	"""
+	def sendDiscussMsg(self,robotID,destDiscuss,content):
+		try:
+			cpp_sendDiscussMsg(robotID,destDiscuss,content)
+		except:
+			pass
+		pass
+	pass
+	"""
+	函数名称:QY.sendDiscussTmpMsg
+	函数参数:
+		RobotID     int
+	    DestDiscuss int
+	    DestQQ      int
+	    content     int
+	"""
+	def sendDiscussTmpMsg(self,RobotID,DestDiscuss,DestQQ,content):
+		try:
+			cpp_sendDiscussTmpMsg(RobotID,DestDiscuss,DestQQ,content)
+		except:
+			pass
+		pass
+	pass
+	"""
+	函数名称:QY.setMessageSvcMsgWithDraw
+	函数参数:
+		RobotID     int
+	    MsgInfo     String(UTF8)
+	"""
+	def setMessageSvcMsgWithDraw(self,RobotID,MsgInfo):
+		try:
+			cpp_setMessageSvcMsgWithDraw(RobotID,MsgInfo)
+		except:
+			pass
+		pass
+	pass
+	"""
+	函数名称:QY.sendLikeFavorite
+	函数参数:
+		robotID  int
+		destQQ   int
+		count    int
+	"""
+	def sendLikeFavorite(self,robotID,destQQ,count):
+		try:
+			cpp_sendLikeFavorite(robotID,destQQ,count)
 		except:
 			pass
 		pass
