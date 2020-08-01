@@ -1,4 +1,4 @@
-// event.cpp : å®šä¹‰ DLL åº”ç”¨ç¨‹åºçš„å¯¼å‡ºå‡½æ•°ã€‚
+// event.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌĞòµÄµ¼³öº¯Êı¡£
 //
 
 #include "stdafx.h"
@@ -19,18 +19,18 @@
 PyObject *py_obj_handler = nullptr;
 PyObject *module_dict = nullptr;
 
-//ç»™Pythonæ–‡ä»¶è°ƒç”¨ï¼Œä¼ å…¥py_obj_handler
+//¸øPythonÎÄ¼şµ÷ÓÃ£¬´«Èëpy_obj_handler
 PyObject *cpp_main(PyObject *self, PyObject *args);
-//åŒ…è£…æ·»åŠ æ—¥å¿—
+//°ü×°Ìí¼ÓÈÕÖ¾
 PyObject *qy_log(PyObject *self, PyObject *args);
 PyObject *qy_warning(PyObject *self, PyObject *args);
 PyObject *qy_error(PyObject *self, PyObject *args);
-//åŒ…è£…å‘é€æ¶ˆæ¯çš„å‡½æ•°
+//°ü×°·¢ËÍÏûÏ¢µÄº¯Êı
 PyObject* qy_sendFriendMsg(PyObject* self, PyObject* args);
 PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args);
-//åŒ…è£…åç‰‡èµ
+//°ü×°ÃûÆ¬ÔŞ
 PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args);
-//åŒ…è£…ç¾¤èŠæ“ä½œ
+//°ü×°ÈºÁÄ²Ù×÷
 PyObject* qy_setGroupMembersKick(PyObject* self, PyObject* args);
 PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args);
 PyObject* qy_setGroupMemberBanSpeak(PyObject* self, PyObject* args);
@@ -41,12 +41,12 @@ PyObject* qy_setGroupAdmini(PyObject* self, PyObject* args);
 PyObject* qy_setGroupMemberCard(PyObject* self, PyObject* args);
 PyObject* qy_setGroupSpecialTitle(PyObject* self, PyObject* args);
 PyObject* qy_setGroupExit(PyObject* self, PyObject* args);
-//åŒ…è£…ç¼–ç è½¬æ¢
+//°ü×°±àÂë×ª»»
 PyObject *qy_utf8Decode(PyObject *self, PyObject *args);
 
 /*
- * è¿”å›æ’ä»¶åŸºç¡€ä¿¡æ¯
- * æœ¬å‡½æ•°ã€ç¦æ­¢ã€‘å¤„ç†å…¶ä»–ä»»ä½•ä»£ç 
+ * ·µ»Ø²å¼ş»ù´¡ĞÅÏ¢
+ * ±¾º¯Êı¡¾½ûÖ¹¡¿´¦ÀíÆäËûÈÎºÎ´úÂë
  */
 QYEVENT(CSTRING) AppInfo()
 {
@@ -55,12 +55,12 @@ QYEVENT(CSTRING) AppInfo()
 
 
 /*
- * æ¥æ”¶åº”ç”¨AuthCode
- * æœ¬å‡½æ•°ã€ç¦æ­¢ã€‘å¤„ç†å…¶ä»–ä»»ä½•ä»£ç ï¼Œè¯·ä¸è¦æ”¹åŠ¨æœ¬å‡½æ•°
+ * ½ÓÊÕÓ¦ÓÃAuthCode
+ * ±¾º¯Êı¡¾½ûÖ¹¡¿´¦ÀíÆäËûÈÎºÎ´úÂë£¬Çë²»Òª¸Ä¶¯±¾º¯Êı
  */
 QYEVENT(INT32) Initialize(
-	INT32	AuthCode,		// åº”ç”¨æ ‡è¯†
-	INT32	ProtocolType	// åè®®ç±»å‹ 1 / å®‰å“QQåè®® 2 / PCQQåè®®
+	INT32	AuthCode,		// Ó¦ÓÃ±êÊ¶
+	INT32	ProtocolType	// Ğ­ÒéÀàĞÍ 1 / °²×¿QQĞ­Òé 2 / PCQQĞ­Òé
 )
 {
 	QY::setAuthCode(AuthCode);
@@ -70,11 +70,11 @@ QYEVENT(INT32) Initialize(
 }
 
 /*
- * [1001]ä¸»ç¨‹åºå¯åŠ¨
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€ä¸»çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ã€‚
- * æ— è®ºæœ¬åº”ç”¨æ˜¯å¦è¢«å¯ç”¨ï¼Œæœ¬å‡½æ•°éƒ½ä¼šåœ¨ä¸»ç¨‹åºå¯åŠ¨åæ‰§è¡Œä¸€æ¬¡ï¼Œè¯·åœ¨è¿™é‡Œæ‰§è¡Œæ’ä»¶åˆå§‹åŒ–ä»£ç ã€‚
- * è¯·åŠ¡å¿…å°½å¿«è¿”å›æœ¬å­ç¨‹åºï¼Œå¦åˆ™ä¼šå¡ä½å…¶ä»–æ’ä»¶ä»¥åŠä¸»ç¨‹åºçš„åŠ è½½ã€‚
- * è¿™é‡Œç¦æ­¢ç›´æ¥è½½å…¥çª—å£
+ * [1001]Ö÷³ÌĞòÆô¶¯
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ö÷Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ¡£
+ * ÎŞÂÛ±¾Ó¦ÓÃÊÇ·ñ±»ÆôÓÃ£¬±¾º¯Êı¶¼»áÔÚÖ÷³ÌĞòÆô¶¯ºóÖ´ĞĞÒ»´Î£¬ÇëÔÚÕâÀïÖ´ĞĞ²å¼ş³õÊ¼»¯´úÂë¡£
+ * ÇëÎñ±Ø¾¡¿ì·µ»Ø±¾×Ó³ÌĞò£¬·ñÔò»á¿¨×¡ÆäËû²å¼şÒÔ¼°Ö÷³ÌĞòµÄ¼ÓÔØ¡£
+ * ÕâÀï½ûÖ¹Ö±½ÓÔØÈë´°¿Ú
  */
 QYEVENT(INT32) QY_Event_Startup()
 {
@@ -100,7 +100,7 @@ QYEVENT(INT32) QY_Event_Startup()
 	PyMethodDef method_cpp_setGroupExit = { "cpp_setGroupExit",qy_setGroupExit,METH_VARARGS,"Send somebody Likes" };
 	PyMethodDef method_cpp_utf8Decode = { "cpp_utf8Decode",qy_utf8Decode,METH_VARARGS,"Utf8Decode to ansi" };
 
-	//æ¨¡å—æ–¹æ³•åˆ—è¡¨
+	//Ä£¿é·½·¨ÁĞ±í
 	PyMethodDef methods[] = {
 		method_cpp_main,
 		method_cpp_log,
@@ -121,7 +121,7 @@ QYEVENT(INT32) QY_Event_Startup()
 		method_cpp_setGroupExit,
 		method_cpp_utf8Decode
 	};
-	//æ¨¡å—å®šä¹‰
+	//Ä£¿é¶¨Òå
 	PyModuleDef module_def =
 	{
 		PyModuleDef_HEAD_INIT,
@@ -130,7 +130,7 @@ QYEVENT(INT32) QY_Event_Startup()
 		-1,
 		methods
 	};
-	//åˆ›å»ºæ¨¡å—
+	//´´½¨Ä£¿é
 	obj_module = PyModule_Create(&module_def);
 	module_dict = PyModule_GetDict(obj_module);
 	PyState_AddModule(obj_module, &module_def);
@@ -139,7 +139,7 @@ QYEVENT(INT32) QY_Event_Startup()
 	if (PyRun_SimpleStringFlags(python_code.c_str(), NULL) == -1) {
 		using sstream = std::stringstream;
 		sstream error;
-		error << "è„šæœ¬æ‰§è¡Œé”™è¯¯!\r\n" << std::endl;
+		error << "½Å±¾Ö´ĞĞ´íÎó!\r\n" << std::endl;
 		std::thread([&]() {
 			AllocConsole();
 			PyErr_Print();
@@ -149,25 +149,25 @@ QYEVENT(INT32) QY_Event_Startup()
 		}).detach();
 		QY::setAppSelfDiscontinue();
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0ã€‚
+	return 0; //Çë¹Ì¶¨·µ»Ø0¡£
 }
 
 /*
- * [1002]ä¸»ç¨‹åºé€€å‡º
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€ä¸»çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ã€‚
- * æ— è®ºæœ¬åº”ç”¨æ˜¯å¦è¢«å¯ç”¨æˆ–å¸è½½ï¼Œæœ¬å‡½æ•°éƒ½ä¼šåœ¨é€€å‡ºå‰æ‰§è¡Œä¸€æ¬¡ï¼Œè¯·åœ¨è¿™é‡Œæ‰§è¡Œæ’ä»¶å…³é—­ä»£ç ã€‚
+ * [1002]Ö÷³ÌĞòÍË³ö
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ö÷Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ¡£
+ * ÎŞÂÛ±¾Ó¦ÓÃÊÇ·ñ±»ÆôÓÃ»òĞ¶ÔØ£¬±¾º¯Êı¶¼»áÔÚÍË³öÇ°Ö´ĞĞÒ»´Î£¬ÇëÔÚÕâÀïÖ´ĞĞ²å¼ş¹Ø±Õ´úÂë¡£
  */
 QYEVENT(INT32) QY_Event_Exit()
 {
-	return 0; //è¯·å›ºå®šè¿”å›0ã€‚
+	return 0; //Çë¹Ì¶¨·µ»Ø0¡£
 }
 
 /*
- * [1003]åº”ç”¨è¢«å¯ç”¨
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€ä¸»çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ã€‚
- * å½“åº”ç”¨è¢«å¯ç”¨åï¼Œå°†æ”¶åˆ°æ­¤äº‹ä»¶ã€‚
- * å¦‚æœè½½å…¥æ—¶åº”ç”¨å·²è¢«å¯ç”¨ï¼Œåˆ™åœ¨_eventStartup(Type=1001,å¯åŠ¨)è¢«è°ƒç”¨åï¼Œæœ¬å‡½æ•°ä¹Ÿå°†è¢«è°ƒç”¨ä¸€æ¬¡ã€‚
- * å¦‚éå¿…è¦ï¼Œä¸å»ºè®®åœ¨è¿™é‡ŒåŠ è½½çª—å£ã€‚ï¼ˆå¯ä»¥æ·»åŠ èœå•ï¼Œè®©ç”¨æˆ·æ‰‹åŠ¨æ‰“å¼€çª—å£ï¼‰
+ * [1003]Ó¦ÓÃ±»ÆôÓÃ
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ö÷Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ¡£
+ * µ±Ó¦ÓÃ±»ÆôÓÃºó£¬½«ÊÕµ½´ËÊÂ¼ş¡£
+ * Èç¹ûÔØÈëÊ±Ó¦ÓÃÒÑ±»ÆôÓÃ£¬ÔòÔÚ_eventStartup(Type=1001,Æô¶¯)±»µ÷ÓÃºó£¬±¾º¯ÊıÒ²½«±»µ÷ÓÃÒ»´Î¡£
+ * Èç·Ç±ØÒª£¬²»½¨ÒéÔÚÕâÀï¼ÓÔØ´°¿Ú¡££¨¿ÉÒÔÌí¼Ó²Ëµ¥£¬ÈÃÓÃ»§ÊÖ¶¯´ò¿ª´°¿Ú£©
  */
 QYEVENT(INT32) QY_Event_Enable()
 {
@@ -177,14 +177,14 @@ QYEVENT(INT32) QY_Event_Enable()
 		PyObject *onEnable = PyObject_GetAttrString(py_obj_handler,"onEnable");
 		PyObject_Call(onEnable,PyTuple_New(0) , NULL);
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0ã€‚
+	return 0; //Çë¹Ì¶¨·µ»Ø0¡£
 }
 
 /*
- * [1004]åº”ç”¨è¢«åœç”¨
- * å½“åº”ç”¨è¢«åœç”¨å‰ï¼Œå°†æ”¶åˆ°æ­¤äº‹ä»¶ã€‚
- * å¦‚æœè½½å…¥æ—¶åº”ç”¨å·²è¢«åœç”¨æˆ–å¸è½½ï¼Œåˆ™æœ¬å‡½æ•°ã€ä¸ä¼šã€‘è¢«è°ƒç”¨ã€‚
- * æ— è®ºæœ¬åº”ç”¨æ˜¯å¦è¢«å¯ç”¨ï¼Œä¸»ç¨‹åºå…³é—­å‰æœ¬å‡½æ•°éƒ½ã€ä¸ä¼šã€‘è¢«è°ƒç”¨ã€‚
+ * [1004]Ó¦ÓÃ±»Í£ÓÃ
+ * µ±Ó¦ÓÃ±»Í£ÓÃÇ°£¬½«ÊÕµ½´ËÊÂ¼ş¡£
+ * Èç¹ûÔØÈëÊ±Ó¦ÓÃÒÑ±»Í£ÓÃ»òĞ¶ÔØ£¬Ôò±¾º¯Êı¡¾²»»á¡¿±»µ÷ÓÃ¡£
+ * ÎŞÂÛ±¾Ó¦ÓÃÊÇ·ñ±»ÆôÓÃ£¬Ö÷³ÌĞò¹Ø±ÕÇ°±¾º¯Êı¶¼¡¾²»»á¡¿±»µ÷ÓÃ¡£
  */
 QYEVENT(INT32) QY_Event_Disable()
 {
@@ -193,23 +193,23 @@ QYEVENT(INT32) QY_Event_Disable()
 		PyObject *onDisable = PyObject_GetAttrString(py_obj_handler, "onDisable");
 		PyObject_Call(onDisable, PyTuple_New(0), NULL);
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0ã€‚
+	return 0; //Çë¹Ì¶¨·µ»Ø0¡£
 }
 
 /*
- * [166]ç§èŠæ¶ˆæ¯
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [166]Ë½ÁÄÏûÏ¢
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_PrivateMsg(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·ç™»å½•
-	INT32		subType,		// æ¶ˆæ¯æ¸ é“ï¼Œ11/æ¥è‡ªå¥½å‹ 1/æ¥è‡ªåœ¨çº¿çŠ¶æ€ 2/æ¥è‡ªç¾¤ 3/æ¥è‡ªè®¨è®ºç»„ 4/æ¥è‡ªå…¬ä¼—å·
-	INT64		sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromQQ,			// æ¥æºå¯¹è±¡
-	INT64		fromGroup,		// æ¥æºç¾¤ç»„(ä»…å­ç±»å‹ä¸º2/3æ—¶ä½¿ç”¨)
-	CSTRING		fromInfo,		// æ¥æºè€…ä¿¡æ¯
-	CSTRING		msg,			// æ¶ˆæ¯å†…å®¹
-	CSTRING		info,			// ä¿¡æ¯
-	INT32		intTest			// ç”¨äºæµ‹è¯•(æˆ‘ä¹Ÿä¸çŸ¥é“æœºå™¨äººä½œè€…æƒ³å¹²å˜›
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅµÇÂ¼
+	INT32		subType,		// ÏûÏ¢ÇşµÀ£¬11/À´×ÔºÃÓÑ 1/À´×ÔÔÚÏß×´Ì¬ 2/À´×ÔÈº 3/À´×ÔÌÖÂÛ×é 4/À´×Ô¹«ÖÚºÅ
+	INT64		sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromQQ,			// À´Ô´¶ÔÏó
+	INT64		fromGroup,		// À´Ô´Èº×é(½ö×ÓÀàĞÍÎª2/3Ê±Ê¹ÓÃ)
+	CSTRING		fromInfo,		// À´Ô´ÕßĞÅÏ¢
+	CSTRING		msg,			// ÏûÏ¢ÄÚÈİ
+	CSTRING		info,			// ĞÅÏ¢
+	INT32		intTest			// ÓÃÓÚ²âÊÔ(ÎÒÒ²²»ÖªµÀ»úÆ÷ÈË×÷ÕßÏë¸ÉÂï
 )
 {
 	if (py_obj_handler) {
@@ -228,26 +228,26 @@ QYEVENT(INT32) QY_Event_PrivateMsg(
 		
 		PyObject_Call(onPrivateMsg, args, nullptr);
 	}
-	// å¦‚æœè¦å›å¤æ¶ˆæ¯ï¼Œè¯·è°ƒç”¨APIå‘é€ï¼Œå¹¶ä¸”è¿™é‡Œ return QY::EVENT_BLOCK - æˆªæ–­æœ¬æ¡æ¶ˆæ¯ï¼Œä¸å†ç»§ç»­å¤„ç†
-	// æ³¨æ„ï¼šåº”ç”¨ä¼˜å…ˆçº§è®¾ç½®ä¸º"æœ€é«˜"(10000)æ—¶ï¼Œä¸å¾—ä½¿ç”¨æœ¬è¿”å›å€¼
-	// å¦‚æœä¸å›å¤æ¶ˆæ¯ï¼Œäº¤ç”±ä¹‹åçš„åº”ç”¨/è¿‡æ»¤å™¨å¤„ç†ï¼Œè¿™é‡Œ return QY::EVENT_IGNORE - å¿½ç•¥æœ¬æ¡æ¶ˆæ¯
+	// Èç¹ûÒª»Ø¸´ÏûÏ¢£¬Çëµ÷ÓÃAPI·¢ËÍ£¬²¢ÇÒÕâÀï return QY::EVENT_BLOCK - ½Ø¶Ï±¾ÌõÏûÏ¢£¬²»ÔÙ¼ÌĞø´¦Àí
+	// ×¢Òâ£ºÓ¦ÓÃÓÅÏÈ¼¶ÉèÖÃÎª"×î¸ß"(10000)Ê±£¬²»µÃÊ¹ÓÃ±¾·µ»ØÖµ
+	// Èç¹û²»»Ø¸´ÏûÏ¢£¬½»ÓÉÖ®ºóµÄÓ¦ÓÃ/¹ıÂËÆ÷´¦Àí£¬ÕâÀï return QY::EVENT_IGNORE - ºöÂÔ±¾ÌõÏûÏ¢
 	return QY::EVENT_IGNORE;
 }
 
 /*
- * [82]ç¾¤æ¶ˆæ¯
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [82]ÈºÏûÏ¢
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_GroupMsg(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·ç™»å½•
-	INT32		subType,		// å­ç±»å‹ï¼Œç›®å‰å›ºå®šä¸º1
-	INT64		sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromGroup,		// æ¥æºç¾¤å·
-	INT64		fromQQ,			// æ¥æºQQå·
-	CSTRING		fromInfo,		// æ¥æºè€…ä¿¡æ¯
-	CSTRING		msg,			// æ¶ˆæ¯å†…å®¹
-	CSTRING		info,			// äº‹ä»¶æ€»ä¿¡æ¯
-	INT32		intTest			// ç”¨äºæµ‹è¯•
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅµÇÂ¼
+	INT32		subType,		// ×ÓÀàĞÍ£¬Ä¿Ç°¹Ì¶¨Îª1
+	INT64		sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromGroup,		// À´Ô´ÈººÅ
+	INT64		fromQQ,			// À´Ô´QQºÅ
+	CSTRING		fromInfo,		// À´Ô´ÕßĞÅÏ¢
+	CSTRING		msg,			// ÏûÏ¢ÄÚÈİ
+	CSTRING		info,			// ÊÂ¼ş×ÜĞÅÏ¢
+	INT32		intTest			// ÓÃÓÚ²âÊÔ
 )
 {
 	PyObject *onPrivateMsg = PyObject_GetAttrString(py_obj_handler, "onPrivateMsg");
@@ -264,150 +264,150 @@ QYEVENT(INT32) QY_Event_GroupMsg(
 		intTest);
 
 	PyObject_Call(onPrivateMsg, args, nullptr);
-	return QYAPI::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QYAPI::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [83]è®¨è®ºç»„æ¶ˆæ¯
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [83]ÌÖÂÛ×éÏûÏ¢
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_DiscussMsg(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·ç™»å½•
-	INT32		subType,		// å­ç±»å‹ï¼Œç›®å‰å›ºå®šä¸º1
-	INT64		sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromDiscuss,	// æ¥æºè®¨è®ºç»„
-	INT64		fromQQ,			// æ¥æºQQå·
-	CSTRING		fromInfo,		// æ¥æºè€…ä¿¡æ¯
-	CSTRING		msg,			// æ¶ˆæ¯å†…å®¹
-	CSTRING		info,			// äº‹ä»¶æ€»ä¿¡æ¯
-	INT32		intTest			// ç”¨äºæµ‹è¯•
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅµÇÂ¼
+	INT32		subType,		// ×ÓÀàĞÍ£¬Ä¿Ç°¹Ì¶¨Îª1
+	INT64		sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromDiscuss,	// À´Ô´ÌÖÂÛ×é
+	INT64		fromQQ,			// À´Ô´QQºÅ
+	CSTRING		fromInfo,		// À´Ô´ÕßĞÅÏ¢
+	CSTRING		msg,			// ÏûÏ¢ÄÚÈİ
+	CSTRING		info,			// ÊÂ¼ş×ÜĞÅÏ¢
+	INT32		intTest			// ÓÃÓÚ²âÊÔ
 )
 {
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [101]æ¨é€æ¶ˆæ¯
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [101]ÍÆËÍÏûÏ¢
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_PushMsgEvent(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·ç™»å½•
-	INT32		subType,		// å­ç±»å‹ï¼Œç›®å‰å›ºå®šä¸º1
-	INT64		sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromGroup,		// æ¥æºç¾¤å·
-	INT64		fromQQ,			// æ“ä½œå¯¹è±¡
-	INT64		param,			// æ“ä½œå‚æ•°ï¼Œéƒ¨åˆ†æƒ…å†µä¸‹ä¼šæ˜¯QQå·
-	CSTRING		msg,			// äº‹ä»¶ä¿¡æ¯
-	CSTRING		info,			// äº‹ä»¶æ€»ä¿¡æ¯
-	INT32		intTest			// ç”¨äºæµ‹è¯•
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅµÇÂ¼
+	INT32		subType,		// ×ÓÀàĞÍ£¬Ä¿Ç°¹Ì¶¨Îª1
+	INT64		sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromGroup,		// À´Ô´ÈººÅ
+	INT64		fromQQ,			// ²Ù×÷¶ÔÏó
+	INT64		param,			// ²Ù×÷²ÎÊı£¬²¿·ÖÇé¿öÏÂ»áÊÇQQºÅ
+	CSTRING		msg,			// ÊÂ¼şĞÅÏ¢
+	CSTRING		info,			// ÊÂ¼ş×ÜĞÅÏ¢
+	INT32		intTest			// ÓÃÓÚ²âÊÔ
 )
 {
 	
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [102]ç¾¤äº‹ä»¶-ç®¡ç†å‘˜å˜åŠ¨
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [102]ÈºÊÂ¼ş-¹ÜÀíÔ±±ä¶¯
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_System_GroupAdmin(
-	INT64	robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·ç™»å½•
-	INT32	subType,		// å­ç±»å‹ï¼Œ1/è¢«å–æ¶ˆç®¡ç†å‘˜ 2/è¢«è®¾ç½®ç®¡ç†å‘˜
-	INT64	sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64	fromGroup,		// æ¥æºç¾¤ç»„
-	INT64	beingOperateQQ	// è¢«æ“ä½œå¯¹è±¡
+	INT64	robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅµÇÂ¼
+	INT32	subType,		// ×ÓÀàĞÍ£¬1/±»È¡Ïû¹ÜÀíÔ± 2/±»ÉèÖÃ¹ÜÀíÔ±
+	INT64	sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64	fromGroup,		// À´Ô´Èº×é
+	INT64	beingOperateQQ	// ±»²Ù×÷¶ÔÏó
 )
 {
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [103]ç¾¤äº‹ä»¶-ç¾¤æˆå‘˜å‡å°‘
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [103]ÈºÊÂ¼ş-Èº³ÉÔ±¼õÉÙ
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_System_GroupMemberDecrease(
-	INT64	robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·
-	INT32	subType,		// å­ç±»å‹ï¼Œ1/ç¾¤è§£æ•£ 2/ç¾¤å‘˜ç¦»å¼€ 3/ç¾¤å‘˜è¢«è¸¢ã€‚
-	INT64	sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64	fromGroup,		// æ¥æºç¾¤ç»„
-	INT64	fromQQ,			// æ“ä½œå¯¹è±¡(ä»…å­ç±»å‹ä¸º2ã€3æ—¶å­˜åœ¨)
-	INT64	beingOperateQQ	// è¢«æ“ä½œå¯¹è±¡
+	INT64	robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅ
+	INT32	subType,		// ×ÓÀàĞÍ£¬1/Èº½âÉ¢ 2/ÈºÔ±Àë¿ª 3/ÈºÔ±±»Ìß¡£
+	INT64	sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64	fromGroup,		// À´Ô´Èº×é
+	INT64	fromQQ,			// ²Ù×÷¶ÔÏó(½ö×ÓÀàĞÍÎª2¡¢3Ê±´æÔÚ)
+	INT64	beingOperateQQ	// ±»²Ù×÷¶ÔÏó
 )
 {
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [104]ç¾¤äº‹ä»¶-ç¾¤æˆå‘˜å¢åŠ 
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [104]ÈºÊÂ¼ş-Èº³ÉÔ±Ôö¼Ó
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_System_GroupMemberIncrease(
-	INT64	robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·
-	INT32	subType,		// å­ç±»å‹ï¼Œ1/ç®¡ç†å‘˜å·²åŒæ„ 2/ç®¡ç†å‘˜é‚€è¯·ã€‚
-	INT64	sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64	fromGroup,		// æ¥æºç¾¤ç»„
-	INT64	fromQQ,			// æ“ä½œå¯¹è±¡(ä»…å­ç±»å‹ä¸º2ã€3æ—¶å­˜åœ¨)
-	INT64	beingOperateQQ	// è¢«æ“ä½œå¯¹è±¡
+	INT64	robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅ
+	INT32	subType,		// ×ÓÀàĞÍ£¬1/¹ÜÀíÔ±ÒÑÍ¬Òâ 2/¹ÜÀíÔ±ÑûÇë¡£
+	INT64	sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64	fromGroup,		// À´Ô´Èº×é
+	INT64	fromQQ,			// ²Ù×÷¶ÔÏó(½ö×ÓÀàĞÍÎª2¡¢3Ê±´æÔÚ)
+	INT64	beingOperateQQ	// ±»²Ù×÷¶ÔÏó
 )
 {
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [201]æ·»åŠ ä»–äººä¸ºå¥½å‹ç»“æœäº‹ä»¶
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [201]Ìí¼ÓËûÈËÎªºÃÓÑ½á¹ûÊÂ¼ş
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_FriendEvent(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·
-	INT32		subType,		// å­ç±»å‹ï¼Œ1/å¯¹æ–¹åŒæ„æ·»åŠ  2/å¯¹æ–¹æ‹’ç»æ·»åŠ 
-	INT64		sendTime,		// å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromQQ,			// æ¥æºå¯¹è±¡
-	CSTRING		info			// ä¿¡æ¯
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅ
+	INT32		subType,		// ×ÓÀàĞÍ£¬1/¶Ô·½Í¬ÒâÌí¼Ó 2/¶Ô·½¾Ü¾øÌí¼Ó
+	INT64		sendTime,		// ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromQQ,			// À´Ô´¶ÔÏó
+	CSTRING		info			// ĞÅÏ¢
 )
 {
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [301]è¯·æ±‚-ä»–äººæ·»åŠ å¥½å‹
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [301]ÇëÇó-ËûÈËÌí¼ÓºÃÓÑ
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_Request_AddFriend(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·
-	INT32		subType,		// å­ç±»å‹ï¼Œç›®å‰å›ºå®šä¸º1
-	INT64		sendTime,		// è¯·æ±‚æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromQQ,			// æ¥æºå¯¹è±¡
-	CSTRING		source,			// æ¥æºä¿¡æ¯
-	CSTRING		msg,			// é™„è¨€
-	CSTRING		responseFlag	// åé¦ˆæ ‡è¯†(å¤„ç†è¯·æ±‚ç”¨)
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅ
+	INT32		subType,		// ×ÓÀàĞÍ£¬Ä¿Ç°¹Ì¶¨Îª1
+	INT64		sendTime,		// ÇëÇóÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromQQ,			// À´Ô´¶ÔÏó
+	CSTRING		source,			// À´Ô´ĞÅÏ¢
+	CSTRING		msg,			// ¸½ÑÔ
+	CSTRING		responseFlag	// ·´À¡±êÊ¶(´¦ÀíÇëÇóÓÃ)
 )
 {
 
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * [302]è¯·æ±‚-ç¾¤æ·»åŠ 
- * æœ¬å­ç¨‹åºä¼šåœ¨ã€çº¿ç¨‹ã€‘ä¸­è¢«è°ƒç”¨ï¼Œè¯·æ³¨æ„ä½¿ç”¨å¯¹è±¡ç­‰éœ€è¦åˆå§‹åŒ–(CoInitialize,CoUninitialize)ã€‚
+ * [302]ÇëÇó-ÈºÌí¼Ó
+ * ±¾×Ó³ÌĞò»áÔÚ¡¾Ïß³Ì¡¿ÖĞ±»µ÷ÓÃ£¬Çë×¢ÒâÊ¹ÓÃ¶ÔÏóµÈĞèÒª³õÊ¼»¯(CoInitialize,CoUninitialize)¡£
  */
 QYEVENT(INT32) QY_Event_Request_AddGroup(
-	INT64		robotID,		// æœºå™¨äººQQï¼Œç”¨äºåŒºåˆ†å¤šå·
-	INT32		responseType,	// è¯·æ±‚ç±»å‹ï¼Œ1/ä»–äººç”³è¯·å…¥ç¾¤ 2/ç¾¤æˆå‘˜é‚€è¯·ä»–äººå…¥ç¾¤ 3/è‡ªå·±(å³ç™»å½•å·)å—é‚€å…¥ç¾¤
-	INT64		sendTime,		// è¯·æ±‚æ—¶é—´(13ä½æ—¶é—´æˆ³)
-	INT64		fromGroup,		// æ¥æºç¾¤ç»„
-	INT64		fromQQ,			// æ¥æºå¯¹è±¡
-	CSTRING		source,			// æ¥æºä¿¡æ¯ï¼Œè¯·æ±‚ç±»å‹ä¸º1æ—¶æ˜¯æ¥æºæ¸ é“ã€ä¸º2æˆ–3æ—¶æ˜¯é‚€è¯·äººQQ
-	CSTRING		msg,			// é™„è¨€
-	CSTRING		responseFlag	// åé¦ˆæ ‡è¯†(å¤„ç†è¯·æ±‚ç”¨)
+	INT64		robotID,		// »úÆ÷ÈËQQ£¬ÓÃÓÚÇø·Ö¶àºÅ
+	INT32		responseType,	// ÇëÇóÀàĞÍ£¬1/ËûÈËÉêÇëÈëÈº 2/Èº³ÉÔ±ÑûÇëËûÈËÈëÈº 3/×Ô¼º(¼´µÇÂ¼ºÅ)ÊÜÑûÈëÈº
+	INT64		sendTime,		// ÇëÇóÊ±¼ä(13Î»Ê±¼ä´Á)
+	INT64		fromGroup,		// À´Ô´Èº×é
+	INT64		fromQQ,			// À´Ô´¶ÔÏó
+	CSTRING		source,			// À´Ô´ĞÅÏ¢£¬ÇëÇóÀàĞÍÎª1Ê±ÊÇÀ´Ô´ÇşµÀ¡¢Îª2»ò3Ê±ÊÇÑûÇëÈËQQ
+	CSTRING		msg,			// ¸½ÑÔ
+	CSTRING		responseFlag	// ·´À¡±êÊ¶(´¦ÀíÇëÇóÓÃ)
 )
 {
 
-	return QY::EVENT_IGNORE; //å…³äºè¿”å›å€¼è¯´æ˜, è§ã€ŒQY_Event_PrivateMsgã€å‡½æ•°
+	return QY::EVENT_IGNORE; //¹ØÓÚ·µ»ØÖµËµÃ÷, ¼û¡¸QY_Event_PrivateMsg¡¹º¯Êı
 }
 
 /*
- * èœå•å‡½æ•°ï¼Œå¯åœ¨ info.json èµ„æºæ–‡ä»¶ä¸­è®¾ç½®èœå•æ•°ç›®ã€å‡½æ•°å
- * å¦‚æœä¸ä½¿ç”¨èœå•ï¼Œè¯·åœ¨ã€Œ info.jsonã€events.def ä»¥åŠ æ­¤å¤„ ã€åˆ é™¤æ— ç”¨å‡½æ•°
+ * ²Ëµ¥º¯Êı£¬¿ÉÔÚ info.json ×ÊÔ´ÎÄ¼şÖĞÉèÖÃ²Ëµ¥ÊıÄ¿¡¢º¯ÊıÃû
+ * Èç¹û²»Ê¹ÓÃ²Ëµ¥£¬ÇëÔÚ¡¸ info.json¡¢events.def ÒÔ¼° ´Ë´¦ ¡¹É¾³ıÎŞÓÃº¯Êı
  */
 QYEVENT(INT32) _menuA()
 {
@@ -415,7 +415,7 @@ QYEVENT(INT32) _menuA()
 		PyObject *onEnable = PyObject_GetAttrString(py_obj_handler, "onMenuA");
 		PyObject_Call(onEnable, PyTuple_New(0), NULL);
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0
+	return 0; //Çë¹Ì¶¨·µ»Ø0
 }
 
 QYEVENT(INT32) _menuB()
@@ -424,7 +424,7 @@ QYEVENT(INT32) _menuB()
 		PyObject *onEnable = PyObject_GetAttrString(py_obj_handler, "onMenuB");
 		PyObject_Call(onEnable, PyTuple_New(0), NULL);
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0
+	return 0; //Çë¹Ì¶¨·µ»Ø0
 }
 
 QYEVENT(INT32) _menuC()
@@ -433,7 +433,7 @@ QYEVENT(INT32) _menuC()
 		PyObject *onEnable = PyObject_GetAttrString(py_obj_handler, "onMenuC");
 		PyObject_Call(onEnable, PyTuple_New(0), NULL);
 	}
-	return 0; //è¯·å›ºå®šè¿”å›0
+	return 0; //Çë¹Ì¶¨·µ»Ø0
 }
 
 #undef QYEVENT
@@ -445,7 +445,7 @@ PyObject *cpp_main(PyObject *self, PyObject *args) {
 	PyObject *isHandler;
 	isHandler = PyObject_GetAttrString(py_obj_handler, "O");
 	if (!PyObject_IsTrue(isHandler)) {
-		QYLOG::Fatal(0, "Python", "Handlerä¸æ­£ç¡®!");
+		QYLOG::Fatal(0, "Python", "Handler²»ÕıÈ·!");
 		QY::setAppSelfDiscontinue();
 	}
 	return Py_None;
@@ -455,7 +455,7 @@ PyObject *cpp_main(PyObject *self, PyObject *args) {
 PyObject *qy_log(PyObject *self, PyObject *args) {
 	const char *event_name,*log_content;
 	if (!PyArg_ParseTuple(args, "ss", &event_name, &log_content)) {
-		QYLOG::Error(0, "Python", "QY.logè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.logµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QYLOG::Info(0,event_name,log_content);
@@ -466,7 +466,7 @@ PyObject *qy_log(PyObject *self, PyObject *args) {
 PyObject *qy_warning(PyObject *self, PyObject *args) {
 	const char *event_name,*log_content;
 	if (!PyArg_ParseTuple(args, "ss", &event_name, &log_content)) {
-		QYLOG::Error(0, "Python", "QY.warningè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.warningµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QYLOG::Warning(0,event_name,log_content);
@@ -477,7 +477,7 @@ PyObject *qy_warning(PyObject *self, PyObject *args) {
 PyObject *qy_error(PyObject *self, PyObject *args) {
 	const char *event_name, *log_content;
 	if (!PyArg_ParseTuple(args, "ss", &event_name, &log_content)) {
-		QYLOG::Error(0, "Python", "QY.errorè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.errorµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QYLOG::Error(0, event_name, log_content);
@@ -489,7 +489,7 @@ PyObject *qy_sendFriendMsg(PyObject *self, PyObject *args) {
 	long long RobotID, DestQQ;
 	const char* content;
 	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestQQ,&content)) {
-		QYLOG::Error(0, "Python", "QY.sendFriendMsgè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.sendFriendMsgµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::sendFriendMsg(RobotID, DestQQ, QY::convertUtf8ToAnsi(content));
@@ -501,7 +501,7 @@ PyObject* qy_sendGroupMsg(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	const char* content;
 	if (!PyArg_ParseTuple(args, "LLs", &RobotID, &DestGroup, &content)) {
-		QYLOG::Error(0, "Python", "QY.sendGroupMsgè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.sendGroupMsgµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::sendGroupMsg(RobotID, DestGroup, QY::convertUtf8ToAnsi(content));
@@ -512,7 +512,7 @@ PyObject* qy_sendLikeFavorite(PyObject* self, PyObject* args) {
 	long long RobotID, DestQQ;
 	int count;
 	if (!PyArg_ParseTuple(args, "LLi", &RobotID, &DestQQ, &count)) {
-		QYLOG::Error(0, "Python", "QY.sendLikeFavoriteè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.sendLikeFavoriteµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::sendLikeFavorite(RobotID, DestQQ, count);
@@ -523,7 +523,7 @@ PyObject* qy_setGroupMembersKick(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup, DestQQ;
 	bool rejectAddRequest;
 	if (!PyArg_ParseTuple(args, "LLLp", &RobotID, &DestGroup, &DestQQ, &rejectAddRequest)) {
-		QYLOG::Error(0, "Python", "QY.setGroupMemberKickè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupMemberKickµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupMembersKick(RobotID, DestGroup, DestQQ, rejectAddRequest);
@@ -534,7 +534,7 @@ PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	bool newStatus;
 	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
-		QYLOG::Error(0, "Python", "QY.setGroupWholeBanSpeakè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupWholeBanSpeakµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupWholeBanSpeak(RobotID, DestGroup, newStatus);
@@ -544,7 +544,7 @@ PyObject* qy_setGroupWholeBanSpeak(PyObject* self, PyObject* args) {
 PyObject* qy_setGroupMemberBanSpeak(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup, DestQQ, timeStamp;
 	if (!PyArg_ParseTuple(args, "LLLL", &RobotID, &DestGroup, &DestQQ, &timeStamp)) {
-		QYLOG::Error(0, "Python", "QY.setGroupMemberBanSpeakè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupMemberBanSpeakµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupMemberBanSpeak(RobotID, DestGroup, DestQQ, timeStamp);
@@ -555,7 +555,7 @@ PyObject* qy_setGroupAnonymousBan(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	bool newStatus;
 	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
-		QYLOG::Error(0, "Python", "QY.setGroupAnonymousBanè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupAnonymousBanµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupAnonymousBan(RobotID, DestGroup, newStatus);
@@ -566,7 +566,7 @@ PyObject* qy_setGroupPrivateSession(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	bool newStatus;
 	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
-		QYLOG::Error(0, "Python", "QY.setGroupPrivateSessionè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupPrivateSessionµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupPrivateSession(RobotID, DestGroup, newStatus);
@@ -577,7 +577,7 @@ PyObject* qy_setGroupManyPeopleChat(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	bool newStatus;
 	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &newStatus)) {
-		QYLOG::Error(0, "Python", "QY.setGroupManyPeopleChatè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupManyPeopleChatµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupManyPeopleChat(RobotID, DestGroup, newStatus);
@@ -588,7 +588,7 @@ PyObject* qy_setGroupAdmini(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup, DestQQ;
 	bool newStatus;
 	if (!PyArg_ParseTuple(args, "LLLp", &RobotID, &DestGroup, &DestQQ, &newStatus)) {
-		QYLOG::Error(0, "Python", "QY.setGroupAdminiè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupAdminiµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupAdmini(RobotID, DestGroup, DestQQ, newStatus);
@@ -599,7 +599,7 @@ PyObject* qy_setGroupMemberCard(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup, DestQQ;
 	const char* newCard;
 	if (!PyArg_ParseTuple(args, "LLLs", &RobotID, &DestGroup, &DestQQ, &newCard)) {
-		QYLOG::Error(0, "Python", "QY.setGroupMemberCardè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupMemberCardµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupMemberCard(RobotID, DestGroup, DestQQ, QY::convertUtf8ToAnsi(newCard));
@@ -611,7 +611,7 @@ PyObject* qy_setGroupSpecialTitle(PyObject* self, PyObject* args) {
 	int expireTime;
 	const char* specialTitle;
 	if (!PyArg_ParseTuple(args, "LLLsi", &RobotID, &DestGroup, &DestQQ, &specialTitle, &expireTime)) {
-		QYLOG::Error(0, "Python", "QY.setGroupSpecialTitleè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupSpecialTitleµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupSpecialTitle(RobotID, DestGroup, DestQQ, QY::convertUtf8ToAnsi(specialTitle), expireTime);
@@ -622,7 +622,7 @@ PyObject* qy_setGroupExit(PyObject* self, PyObject* args) {
 	long long RobotID, DestGroup;
 	bool disband;
 	if (!PyArg_ParseTuple(args, "LLp", &RobotID, &DestGroup, &disband)) {
-		QYLOG::Error(0, "Python", "QY.setGroupExitè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.setGroupExitµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		QY::setGroupExit(RobotID, DestGroup, disband);
@@ -632,7 +632,7 @@ PyObject* qy_setGroupExit(PyObject* self, PyObject* args) {
 PyObject *qy_utf8Decode(PyObject *self, PyObject *args) {
 	const char* content;
 	if (!PyArg_ParseTuple(args, "s",  &content)) {
-		QYLOG::Error(0, "Python", "QY.utf8Decodeè°ƒç”¨é”™è¯¯ï¼");
+		QYLOG::Error(0, "Python", "QY.utf8Decodeµ÷ÓÃ´íÎó£¡");
 	}
 	else {
 		const char* ret = QY::convertUtf8ToAnsi(content);

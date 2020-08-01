@@ -1,4 +1,4 @@
-# ä»C++å¯¼å…¥Native API
+# ´ÓC++µ¼ÈëNative API
 try:
  from qysdk_base import *;
 except :
@@ -6,61 +6,61 @@ except :
 __NowHandler = None;
 QY = None;
 
-# è¯¥ç±»ç”¨äºç»§æ‰¿ & å¤„ç†æ¶ˆæ¯
+# ¸ÃÀàÓÃÓÚ¼Ì³Ğ & ´¦ÀíÏûÏ¢
 class MessageHandler():
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šæ’ä»¶è¢«å¯ç”¨
-		äº‹ä»¶åç§°ï¼šonEnable
-		äº‹ä»¶å‚æ•°ï¼šæ— 
+		ÊÂ¼şËµÃ÷£º²å¼ş±»ÆôÓÃ
+		ÊÂ¼şÃû³Æ£ºonEnable
+		ÊÂ¼ş²ÎÊı£ºÎŞ
 	"""
 	def onEnable(self):
 		pass
 
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šæ’ä»¶è¢«ç¦ç”¨
-		äº‹ä»¶åç§°ï¼šonDisable
-		äº‹ä»¶å‚æ•°ï¼šæ— 
+		ÊÂ¼şËµÃ÷£º²å¼ş±»½ûÓÃ
+		ÊÂ¼şÃû³Æ£ºonDisable
+		ÊÂ¼ş²ÎÊı£ºÎŞ
 	"""
 	def onDisable(self):
 		pass
 
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šèœå•A
-		äº‹ä»¶åç§°ï¼šonMenuA
-		äº‹ä»¶å‚æ•°ï¼šæ— 
+		ÊÂ¼şËµÃ÷£º²Ëµ¥A
+		ÊÂ¼şÃû³Æ£ºonMenuA
+		ÊÂ¼ş²ÎÊı£ºÎŞ
 	"""
 	def onMenuA(self):
 		pass
 
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šèœå•B
-		äº‹ä»¶åç§°ï¼šonMenuB
-		äº‹ä»¶å‚æ•°ï¼šæ— 
+		ÊÂ¼şËµÃ÷£º²Ëµ¥B
+		ÊÂ¼şÃû³Æ£ºonMenuB
+		ÊÂ¼ş²ÎÊı£ºÎŞ
 	"""
 	def onMenuB(self):
 		pass
 
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šèœå•C
-		äº‹ä»¶åç§°ï¼šonMenuC
-		äº‹ä»¶å‚æ•°ï¼šæ— 
+		ÊÂ¼şËµÃ÷£º²Ëµ¥C
+		ÊÂ¼şÃû³Æ£ºonMenuC
+		ÊÂ¼ş²ÎÊı£ºÎŞ
 	"""
 	def onMenuC(self):
 		pass
 	
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šç§èŠæ¶ˆæ¯
-		äº‹ä»¶åç§°ï¼šonPrivateMsg
-		äº‹ä»¶å‚æ•°ï¼š
-			robotID   int       æœºå™¨äººQQå·
-			subType   int       æ¶ˆæ¯æ¸ é“ 11/æ¥è‡ªå¥½å‹ 1/æ¥è‡ªåœ¨çº¿çŠ¶æ€ 2/æ¥è‡ªç¾¤ 3/æ¥è‡ªè®¨è®ºç»„ 4/æ¥è‡ªå…¬ä¼—å·
-			sendTime  int       å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-			fromQQ    int       å‘é€è€…QQå·
-			fromGroup int       æ¥æºç¾¤ç»„(ä»…å­ç±»å‹ä¸º2/3æ—¶ä½¿ç”¨)
-			fromInfo  String    æ¥æºè€…ä¿¡æ¯
-			msg       String	æ¶ˆæ¯å†…å®¹
-			info      String    äº‹ä»¶æ€»ä¿¡æ¯
-			intTest   String	ç”¨äºæµ‹è¯•(æˆ‘ä¹Ÿä¸çŸ¥é“æœºå™¨äººä½œè€…æƒ³å¹²å˜›
+		ÊÂ¼şËµÃ÷£ºË½ÁÄÏûÏ¢
+		ÊÂ¼şÃû³Æ£ºonPrivateMsg
+		ÊÂ¼ş²ÎÊı£º
+			robotID   int       »úÆ÷ÈËQQºÅ
+			subType   int       ÏûÏ¢ÇşµÀ 11/À´×ÔºÃÓÑ 1/À´×ÔÔÚÏß×´Ì¬ 2/À´×ÔÈº 3/À´×ÔÌÖÂÛ×é 4/À´×Ô¹«ÖÚºÅ
+			sendTime  int       ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+			fromQQ    int       ·¢ËÍÕßQQºÅ
+			fromGroup int       À´Ô´Èº×é(½ö×ÓÀàĞÍÎª2/3Ê±Ê¹ÓÃ)
+			fromInfo  String    À´Ô´ÕßĞÅÏ¢
+			msg       String	ÏûÏ¢ÄÚÈİ
+			info      String    ÊÂ¼ş×ÜĞÅÏ¢
+			intTest   String	ÓÃÓÚ²âÊÔ(ÎÒÒ²²»ÖªµÀ»úÆ÷ÈË×÷ÕßÏë¸ÉÂï
 	"""
 	def onPrivateMsg(self,
 				robotID,
@@ -75,18 +75,18 @@ class MessageHandler():
 		pass
 		
 	"""
-		äº‹ä»¶è¯´æ˜ï¼šç¾¤æ¶ˆæ¯
-		äº‹ä»¶åç§°ï¼šonGroupMsg
-		äº‹ä»¶å‚æ•°ï¼š
-			robotID   int       æœºå™¨äººQQå·
-			subType   int       å­ç±»å‹ï¼Œç›®å‰å›ºå®šä¸º1
-			sendTime  int       å‘é€æ—¶é—´(13ä½æ—¶é—´æˆ³)
-			fromGroup int       æ¥æºç¾¤å·
-			fromQQ    int       å‘é€è€…QQå·
-			fromInfo  String    æ¥æºè€…ä¿¡æ¯
-			msg       String	æ¶ˆæ¯å†…å®¹
-			info      String    äº‹ä»¶æ€»ä¿¡æ¯
-			intTest   String	ç”¨äºæµ‹è¯•(æˆ‘ä¹Ÿä¸çŸ¥é“æœºå™¨äººä½œè€…æƒ³å¹²å˜›
+		ÊÂ¼şËµÃ÷£ºÈºÏûÏ¢
+		ÊÂ¼şÃû³Æ£ºonGroupMsg
+		ÊÂ¼ş²ÎÊı£º
+			robotID   int       »úÆ÷ÈËQQºÅ
+			subType   int       ×ÓÀàĞÍ£¬Ä¿Ç°¹Ì¶¨Îª1
+			sendTime  int       ·¢ËÍÊ±¼ä(13Î»Ê±¼ä´Á)
+			fromGroup int       À´Ô´ÈººÅ
+			fromQQ    int       ·¢ËÍÕßQQºÅ
+			fromInfo  String    À´Ô´ÕßĞÅÏ¢
+			msg       String	ÏûÏ¢ÄÚÈİ
+			info      String    ÊÂ¼ş×ÜĞÅÏ¢
+			intTest   String	ÓÃÓÚ²âÊÔ(ÎÒÒ²²»ÖªµÀ»úÆ÷ÈË×÷ÕßÏë¸ÉÂï
 	"""
 	def onGroupMsg(self,
 				robotID,
@@ -100,16 +100,16 @@ class MessageHandler():
 				intTest):
 		pass
 
-	is_Handler = True; # ä¸è¦æ›´æ”¹è¿™ä¸ªå˜é‡ï¼æ¡†æ¶å†…éƒ¨ä½¿ç”¨ï¼
+	is_Handler = True; # ²»Òª¸ü¸ÄÕâ¸ö±äÁ¿£¡¿ò¼ÜÄÚ²¿Ê¹ÓÃ£¡
 	pass
 
 
-# è¯¥æ–¹æ³•å¿…é¡»è°ƒç”¨ï¼Œç”¨äºè®¾ç½®æ¶ˆæ¯å¤„ç†ç±»
+# ¸Ã·½·¨±ØĞëµ÷ÓÃ£¬ÓÃÓÚÉèÖÃÏûÏ¢´¦ÀíÀà
 def setHandler(handler):
 	__NowHandler = handler()
 	pass
 
-# è¯¥æ–¹æ³•å¿…é¡»è°ƒç”¨ï¼Œç”¨äºé€šçŸ¥C++
+# ¸Ã·½·¨±ØĞëµ÷ÓÃ£¬ÓÃÓÚÍ¨ÖªC++
 def main():
 	try:
 		cpp_main(__NowHandler);
@@ -117,11 +117,11 @@ def main():
 		pass
 	pass
 
-# è¯¥ç±»æä¾›å¥‘çº¦çš„Native APIï¼Œä¸å¯ç»§æ‰¿
+# ¸ÃÀàÌá¹©ÆõÔ¼µÄNative API£¬²»¿É¼Ì³Ğ
 class cpp_api():
 	"""
-	å‡½æ•°åç§°:QY.log
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.log
+	º¯Êı²ÎÊı:
 		eventName  String
 		logContent String
 	"""
@@ -132,8 +132,8 @@ class cpp_api():
 			pass
 		pass
 	"""
-	å‡½æ•°åç§°:QY.warning
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.warning
+	º¯Êı²ÎÊı:
 		eventName  String
 		logContent String
 	"""
@@ -145,8 +145,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.error
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.error
+	º¯Êı²ÎÊı:
 		eventName  String
 		logContent String
 	"""
@@ -157,8 +157,8 @@ class cpp_api():
 			pass
 		pass
 	"""
-	å‡½æ•°åç§°:QY.sendFriendMsg
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.sendFriendMsg
+	º¯Êı²ÎÊı:
 		robotID  int
 		destQQ   int
 		content  String(UTF8)
@@ -171,8 +171,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.sendGroupMsg
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.sendGroupMsg
+	º¯Êı²ÎÊı:
 		robotID     int
 		destGroup   int
 		content     String(UTF8)
@@ -185,8 +185,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.sendLikeFavorite
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.sendLikeFavorite
+	º¯Êı²ÎÊı:
 		robotID  int
 		destQQ   int
 		count    int
@@ -199,8 +199,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupMembersKick
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupMembersKick
+	º¯Êı²ÎÊı:
 		RobotID          int
 		DestGroup        int
 		DestQQ           int
@@ -214,8 +214,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupMemberBanSpeak
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupMemberBanSpeak
+	º¯Êı²ÎÊı:
 		RobotID   int
 	    DestGroup int 
 		DestQQ    int
@@ -229,8 +229,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupAnonymousBan
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupAnonymousBan
+	º¯Êı²ÎÊı:
 		RobotID   int
 		DestGroup int
 	    newStatus int
@@ -243,8 +243,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupPrivateSession
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupPrivateSession
+	º¯Êı²ÎÊı:
 		RobotID   int
 		DestGroup int
 	    newStatus int
@@ -257,8 +257,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupManyPeopleChat
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupManyPeopleChat
+	º¯Êı²ÎÊı:
 		RobotID   int
 		DestGroup int
 	    newStatus int
@@ -271,8 +271,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupAdmini
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupAdmini
+	º¯Êı²ÎÊı:
 		RobotID   int
 		DestGroup int
 		DestQQ    int
@@ -286,8 +286,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupMemberCard
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupMemberCard
+	º¯Êı²ÎÊı:
 		RobotID   int
 		DestGroup int
 		DestQQ    int
@@ -301,8 +301,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupSpecialTitle
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupSpecialTitle
+	º¯Êı²ÎÊı:
 		RobotID      int
 		DestGroup    int
 	    DestQQ       int
@@ -317,8 +317,8 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.setGroupExit
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.setGroupExit
+	º¯Êı²ÎÊı:
 		RobotID    int
 		DestGroup  int
 		disband    bool
@@ -331,10 +331,10 @@ class cpp_api():
 		pass
 	pass
 	"""
-	å‡½æ•°åç§°:QY.utf8Decode
-	å‡½æ•°å‚æ•°:
+	º¯ÊıÃû³Æ:QY.utf8Decode
+	º¯Êı²ÎÊı:
 		content  String(UTF8)
-	è¿”å›:
+	·µ»Ø:
 		content String(Ansi)
 	"""
 	def sendFriendMsg(self,content):
@@ -345,5 +345,5 @@ class cpp_api():
 		pass
 	pass
 
-#æä¾›å„ç§å¥‘çº¦çš„apiï¼Œä¾‹å¦‚QY.log
+#Ìá¹©¸÷ÖÖÆõÔ¼µÄapi£¬ÀıÈçQY.log
 QY = cpp_api();
